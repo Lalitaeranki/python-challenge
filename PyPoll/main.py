@@ -16,17 +16,17 @@ with open ("election_data.csv",'r')as csvfile:
     vote3=0
     vote4=0
     totalvotes_sum=0
-#calculations for total months and total profit/loss
+#Assigning in list
     for i in csvreader:
         total_votes.append(i[0])
         County.append(str(i[1]))
         Candidate.append(str(i[2]))
         count+=1
-#print(count)
+#using set function to get list of candidates as set dictonary without repetion of strings
 cand=set(Candidate)
 candidate_no=sorted(cand,reverse=True)
-#print(candidate_no)
-#print(cand)
+#set gets in dictonary so using sorted which gives me list as [o"tolley,Li,Khan,correy]
+#calculating votes for the candidates
 for k in range(1,count):       
     if (str(candidate_no[0])==str(Candidate[k])):
         vote1+=1
@@ -37,8 +37,8 @@ for k in range(1,count):
     if (str(candidate_no[3])==str(Candidate[k])):
         vote4+=1
 votes=[vote1,vote2,vote3,vote4]   
-#print("Total Votes:",len(total_votes))
-#print(votes)
+#Assigning vote as list to calculate sum ,maximum 
+#calculating percentage change and winner
 totalvotes_sum=sum(votes)
 percentage_change_voter_1=(vote1/totalvotes_sum)
 percentage_change_voter_2=(vote2/totalvotes_sum)
@@ -57,11 +57,8 @@ print(f'{candidate_no[2]}: {percentage_change_voter_3:.3%} ({vote3})')
 print(f'{candidate_no[3]}: {percentage_change_voter_4:.3%} ({vote4})')
 print(f'{candidate_no[1]}: {percentage_change_voter_2:.3%} ({vote2})')
 print(f'{candidate_no[0]}: {percentage_change_voter_1:.3%} ({vote1})')
-#print(candidate_no[3],":",round(percentage_change_voter_4,5),"(",vote4,")")
-#print(candidate_no[1],":",round(percentage_change_voter_2,5),"(",vote2,")")
-#print(candidate_no[0],":",round(percentage_change_voter_1,5),"(",vote1,")")
 print("-------------------------")
 print("Winner:",winner_candidate)
 print("-------------------------")
 
-#python main.py > result_bank.txt
+#adding to text file by running this in git bash :   python main.py > result_Poll.txt
